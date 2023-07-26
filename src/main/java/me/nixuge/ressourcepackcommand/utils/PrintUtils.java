@@ -36,12 +36,12 @@ public class PrintUtils {
 
         for (Entry entry : entriesApplied) {
             String pn = entry.getResourcePackName();
-            player.addChatMessage(getProperTextComponent("§c[-]§r " + pn, "removepack " + pn));
+            player.addChatMessage(getProperTextComponent("§c[-]§r " + pn, "/removepack " + pn));
         }
         
         for (Entry entry : entriesUnapplied) {
             String pn = entry.getResourcePackName();
-            player.addChatMessage(getProperTextComponent("§2[+]§r " + pn, "addpack " + pn));
+            player.addChatMessage(getProperTextComponent("§2[+]§r " + pn, "/addpack " + pn));
         }
     }
     public static void printSuccessfulMessage(boolean added, String name) {
@@ -54,7 +54,7 @@ public class PrintUtils {
         player.addChatMessage(new ChatComponentText(full));
 
         ChatComponentText messageObject = new ChatComponentText("[Click here to refresh]");
-        ChatStyle style = new ChatStyle().setChatClickEvent(new ClickEvent(Action.RUN_COMMAND, "reloadpacks"));
+        ChatStyle style = new ChatStyle().setChatClickEvent(new ClickEvent(Action.RUN_COMMAND, "/reloadpacks"));
         messageObject.setChatStyle(style);
 
         player.addChatMessage(messageObject);
