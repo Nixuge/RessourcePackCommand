@@ -1,10 +1,8 @@
 package me.nixuge.ressourcepackcommand.command;
 
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.EnumChatFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,7 @@ public abstract class AbstractCommand extends CommandBase {
     }
 
     @Override
-    public void execute(MinecraftServer var1, ICommandSender sender, String[] args) throws CommandException {
+    public void processCommand(final ICommandSender sender, final String[] args) {
         this.onCommand(sender, args);
     }
 
@@ -54,7 +52,7 @@ public abstract class AbstractCommand extends CommandBase {
 
     protected void tell(final MessageBuilder message) {
         new MessageBuilder("")
-                .addMessage(this.prefix != null ? this.prefix + "> " : "", TextFormatting.BLUE)
+                .addMessage(this.prefix != null ? this.prefix + "> " : "", EnumChatFormatting.BLUE)
                 .addMessage(message)
                 .sendToPlayer();
     }

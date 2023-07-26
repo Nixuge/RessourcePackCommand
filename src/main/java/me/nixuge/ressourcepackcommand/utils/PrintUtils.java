@@ -6,19 +6,20 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.client.resources.ResourcePackRepository.Entry;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.ClickEvent.Action;
+import net.minecraft.event.ClickEvent;
+import net.minecraft.event.ClickEvent.Action;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.IChatComponent;
+
 
 public class PrintUtils {
     private static final Minecraft mc = Minecraft.getMinecraft();
 
-    private static ITextComponent getProperTextComponent(String text, String cmd) {
-        TextComponentString messageObject = new TextComponentString(text);
-        Style style = new Style().setClickEvent(new ClickEvent(Action.RUN_COMMAND, cmd));
-        messageObject.setStyle(style);
+    private static IChatComponent getProperTextComponent(String text, String cmd) {
+        ChatComponentText messageObject = new ChatComponentText(text);
+        ChatStyle style = new ChatStyle().setChatClickEvent(new ClickEvent(Action.RUN_COMMAND, cmd));
+        messageObject.setChatStyle(style);
         return messageObject;
     }
 
@@ -50,11 +51,11 @@ public class PrintUtils {
         
         String action = added ? "added" : "removed";
         String full = "Successfully " + action + " pack " + name + "§r";
-        player.addChatMessage(new TextComponentString(full));
+        player.addChatMessage(new ChatComponentText(full));
 
-        TextComponentString messageObject = new TextComponentString("[Click here to refresh]");
-        Style style = new Style().setClickEvent(new ClickEvent(Action.RUN_COMMAND, "reloadpacks"));
-        messageObject.setStyle(style);
+        ChatComponentText messageObject = new ChatComponentText("[Click here to refresh]");
+        ChatStyle style = new ChatStyle().setChatClickEvent(new ClickEvent(Action.RUN_COMMAND, "reloadpacks"));
+        messageObject.setChatStyle(style);
 
         player.addChatMessage(messageObject);
     }

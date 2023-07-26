@@ -22,7 +22,7 @@ public class EntriesUtils {
         for (ResourcePackRepository.Entry resourcepackrepository$entry : list) {
             mc.gameSettings.resourcePacks.add(resourcepackrepository$entry.getResourcePackName());
 
-            if (resourcepackrepository$entry.getPackFormat() != 1) {
+            if (resourcepackrepository$entry.func_183027_f() != 1) {
                 mc.gameSettings.incompatibleResourcePacks.add(resourcepackrepository$entry.getResourcePackName());
             }
         }

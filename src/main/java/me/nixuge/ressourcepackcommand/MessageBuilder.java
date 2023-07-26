@@ -2,20 +2,20 @@ package me.nixuge.ressourcepackcommand;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 
 public class MessageBuilder {
-    private final ITextComponent messageObject;
+    private final IChatComponent messageObject;
 
     public MessageBuilder(final String message) {
-        this.messageObject = new TextComponentString(message);
+        this.messageObject = new ChatComponentText(message);
     }
 
-    public MessageBuilder(final String message, final TextFormatting colour) {
-        this.messageObject = new TextComponentString(message);
-        this.messageObject.getStyle().setColor(colour);
+    public MessageBuilder(final String message, final EnumChatFormatting colour) {
+        this.messageObject = new ChatComponentText(message);
+        this.messageObject.getChatStyle().setColor(colour);
     }
 
     public MessageBuilder addMessage(final MessageBuilder messageBuilder) {
@@ -23,14 +23,14 @@ public class MessageBuilder {
         return this;
     }
 
-    public MessageBuilder addMessage(final String message, final TextFormatting colour) {
-        final ITextComponent messageNew = new TextComponentString(message);
-        messageNew.getStyle().setColor(colour);
+    public MessageBuilder addMessage(final String message, final EnumChatFormatting colour) {
+        final IChatComponent messageNew = new ChatComponentText(message);
+        messageNew.getChatStyle().setColor(colour);
         this.messageObject.appendSibling(messageNew);
         return this;
     }
 
-    public ITextComponent build() {
+    public IChatComponent build() {
         return this.messageObject;
     }
 

@@ -2,9 +2,10 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "https://repo.spongepowered.org/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath files('deps/ForgeGradle-2.1.2.jar')
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -20,9 +21,20 @@ compileJava {
 }
 
 minecraft {
+    // Sometimes this prevents the game from launching, better do it every time
+    project.delete(files("run/.mixin.out"))
+
     version = "${minecraft_version}-${forge_version}"
     runDir = "run"
     mappings = mappings_version
+}
+
+runClient {
+	args = ["--username", dev_username]
+}
+
+repositories {
+    mavenCentral()
 }
 
 configurations {
